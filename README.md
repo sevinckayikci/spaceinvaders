@@ -1,4 +1,4 @@
 spaceinvaders
 =============
 
-space invaders with 
+space invaders with 2D java support
