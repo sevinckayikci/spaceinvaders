@@ -70,6 +70,13 @@ public abstract class Entity {
         y += (delta * dy) / 1000;
     }
 
+    public void move(long delta, long dx) {
+        // update the location of the entity based on move speeds
+        x += (delta * dx) / 1000;
+        y += (delta * dy) / 1000;
+        this.dx = dx;
+    }
+
     /**
      * Set the horizontal speed of this entity
      *

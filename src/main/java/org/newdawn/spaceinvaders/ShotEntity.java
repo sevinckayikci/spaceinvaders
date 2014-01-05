@@ -50,6 +50,16 @@ public class ShotEntity extends Entity {
         }
     }
 
+    public void move(long delta, long dx) {
+        // proceed with normal move
+        super.move(delta, dx);
+
+        // if we shot off the screen, remove ourselfs
+        if (y < -100) {
+            game.removeEntity(this);
+        }
+    }
+
     /**
      * Notification that this shot has collided with another
      * entity

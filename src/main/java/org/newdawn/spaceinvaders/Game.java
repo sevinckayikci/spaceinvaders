@@ -103,6 +103,9 @@ public class Game extends Canvas {
      */
     private JFrame container;
 
+    private long rightAngle = 0;
+    private long leftAngle = 0;
+
     /**
      * Construct our game and set it running.
      */
@@ -309,7 +312,18 @@ public class Game extends Canvas {
                 for (int i = 0; i < entities.size(); i++) {
                     Entity entity = (Entity) entities.get(i);
 
-                    entity.move(delta);
+                    if (entity instanceof ShotEntity) {
+                        if (rightAngle > 0) {
+                            long angle = rightAngle * 5;
+                            System.out.println("Right angle is : " + angle);
+                            entity.move(delta, angle);
+                        } else if (leftAngle > 0) {
+                            long angle = leftAngle * 5;
+                            System.out.println("Left angle is : " + angle);
+                            entity.move(delta, angle);
+                        }
+                    } else
+                        entity.move(delta);
                 }
             }
 
@@ -430,6 +444,16 @@ public class Game extends Canvas {
             if (e.getKeyCode() == KeyEvent.VK_SPACE) {
                 firePressed = true;
             }
+
+            if (e.getKeyCode() == KeyEvent.VK_X) {
+                rightAngle += 1;
+                leftAngle -= 1;
+            }
+            if (e.getKeyCode() == KeyEvent.VK_Z) {
+                rightAngle -= 1;
+                leftAngle += 1;
+            }
+
         }
 
         /**
