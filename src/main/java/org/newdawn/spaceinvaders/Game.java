@@ -446,12 +446,16 @@ public class Game extends Canvas {
             }
 
             if (e.getKeyCode() == KeyEvent.VK_X) {
-                rightAngle += 1;
-                leftAngle -= 1;
+                if (rightAngle * 5 < 140) {
+                    rightAngle += 1;
+                    leftAngle -= 1;
+                }
             }
             if (e.getKeyCode() == KeyEvent.VK_Z) {
-                rightAngle -= 1;
-                leftAngle += 1;
+                if (leftAngle * 5 > -140) {
+                    rightAngle -= 1;
+                    leftAngle += 1;
+                }
             }
 
         }
