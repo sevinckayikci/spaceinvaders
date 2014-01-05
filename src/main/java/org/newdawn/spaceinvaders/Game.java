@@ -318,7 +318,7 @@ public class Game extends Canvas {
                             System.out.println("Right angle is : " + angle);
                             entity.move(delta, angle);
                         } else if (leftAngle > 0) {
-                            long angle = leftAngle * 5;
+                            long angle = -leftAngle * 5;
                             System.out.println("Left angle is : " + angle);
                             entity.move(delta, angle);
                         }
