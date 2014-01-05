@@ -10,33 +10,10 @@ package org.newdawn.spaceinvaders;
  * @author Kevin Glass
  */
 public class SystemTimer {
-    /**
-     * Our link into the GAGE timer library
-     */
-//    private static AdvancedTimer timer = new AdvancedTimer();
-    /**
-     * The number of "timer ticks" per second
-     */
-    private static long timerTicksPerSecond;
 
-    /** A little initialisation at startup, we're just going to get the GAGE timer going */
-    static {
-//        timer.start();
-//        timerTicksPerSecond = AdvancedTimer.getTicksPerSecond();
-    }
 
-    /**
-     * Get the high resolution time in milliseconds
-     *
-     * @return The high resolution time in milliseconds
-     */
     public static long getTime() {
-        // we get the "timer ticks" from the high resolution timer
-        // multiply by 1000 so our end result is in milliseconds
-        // then divide by the number of ticks in a second giving
-        // us a nice clear time in milliseconds
-//        return (timer.getClockTicks() * 1000) / timerTicksPerSecond;
-        return 100l;
+        return System.currentTimeMillis();
     }
 
     /**
@@ -46,5 +23,9 @@ public class SystemTimer {
      */
     public static void sleep(long duration) {
 //        timer.sleep((duration * timerTicksPerSecond) / 1000);
+        try {
+            Thread.sleep(duration);
+        } catch (Exception e) {
+        }
     }
 }
