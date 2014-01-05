@@ -103,8 +103,9 @@ public class Game extends Canvas {
      */
     private JFrame container;
 
-    private long rightAngle = 0;
-    private long leftAngle = 0;
+    private long rightAngle = 6;
+    private long leftAngle = 6;
+    private final long ANGLE_CONSTANT = 10;
 
     /**
      * Construct our game and set it running.
@@ -313,14 +314,16 @@ public class Game extends Canvas {
                     Entity entity = (Entity) entities.get(i);
 
                     if (entity instanceof ShotEntity) {
-                        if (rightAngle > 0) {
-                            long angle = rightAngle * 5;
+                        if (rightAngle >= 0) {
+                            long angle = rightAngle * ANGLE_CONSTANT;
                             System.out.println("Right angle is : " + angle);
                             entity.move(delta, angle);
-                        } else if (leftAngle > 0) {
-                            long angle = -leftAngle * 5;
+                        } else if (leftAngle >= 0) {
+                            long angle = -leftAngle * ANGLE_CONSTANT;
                             System.out.println("Left angle is : " + angle);
                             entity.move(delta, angle);
+                        } else {
+                            entity.move(delta);
                         }
                     } else
                         entity.move(delta);
@@ -442,20 +445,22 @@ public class Game extends Canvas {
                 rightPressed = true;
             }
             if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+                System.out.println("shot fired!");
                 firePressed = true;
             }
 
             if (e.getKeyCode() == KeyEvent.VK_X) {
-                if (rightAngle * 5 < 140) {
+                if (rightAngle * ANGLE_CONSTANT < 140) {
                     rightAngle += 1;
-                    leftAngle -= 1;
                 }
+                leftAngle -= 1;
             }
             if (e.getKeyCode() == KeyEvent.VK_Z) {
-                if (leftAngle * 5 > -140) {
-                    rightAngle -= 1;
+                if (- leftAngle * ANGLE_CONSTANT > -140) {
                     leftAngle += 1;
                 }
+                rightAngle -= 1;
+
             }
 
         }
