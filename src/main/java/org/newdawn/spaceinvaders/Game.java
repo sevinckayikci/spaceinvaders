@@ -106,6 +106,7 @@ public class Game extends Canvas {
     private long rightAngle = 6;
     private long leftAngle = 6;
     private final long ANGLE_CONSTANT = 10;
+    private final long maximumAngle = 105;
 
     /**
      * Construct our game and set it running.
@@ -152,10 +153,17 @@ public class Game extends Canvas {
         createBufferStrategy(2);
         strategy = getBufferStrategy();
 
+//        calculateMaximumShotAngle();
+
         // initialise the entities in our game so there's something
         // to see at startup
         initEntities();
     }
+
+//    private void calculateMaximumShotAngle(){
+//        maximumAngle = (long) (600 / Math.tan(10));
+//        System.out.println("Maximum Angle : " + maximumAngle);
+//    }
 
     /**
      * Start a fresh game, this should clear out any old data and
@@ -450,13 +458,13 @@ public class Game extends Canvas {
             }
 
             if (e.getKeyCode() == KeyEvent.VK_X) {
-                if (rightAngle * ANGLE_CONSTANT < 140) {
+                if (rightAngle * ANGLE_CONSTANT < maximumAngle) {
                     rightAngle += 1;
                 }
                 leftAngle -= 1;
             }
             if (e.getKeyCode() == KeyEvent.VK_Z) {
-                if (- leftAngle * ANGLE_CONSTANT > -140) {
+                if (-leftAngle * ANGLE_CONSTANT > -maximumAngle) {
                     leftAngle += 1;
                 }
                 rightAngle -= 1;
