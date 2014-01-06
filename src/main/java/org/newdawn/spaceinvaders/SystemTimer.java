@@ -13,7 +13,8 @@ public class SystemTimer {
 
 
     public static long getTime() {
-        return System.currentTimeMillis();
+        return System.nanoTime() / 1000000;
+        //return System.currentTimeMillis();
     }
 
     /**

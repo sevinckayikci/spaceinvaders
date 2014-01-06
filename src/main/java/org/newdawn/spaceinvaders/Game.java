@@ -103,10 +103,10 @@ public class Game extends Canvas {
      */
     private JFrame container;
 
-    private long rightAngle = 6;
-    private long leftAngle = 6;
-    private final long ANGLE_CONSTANT = 10;
-    private final long maximumAngle = 105;
+    private long rightAngle = 0;
+    private long leftAngle = 0;
+    private final long ANGLE_CONSTANT = 100;
+    private final double maximumAngle = 300 / Math.tan(Math.toRadians(10));
 
     /**
      * Construct our game and set it running.
@@ -154,7 +154,7 @@ public class Game extends Canvas {
         strategy = getBufferStrategy();
 
 //        calculateMaximumShotAngle();
-
+        System.out.println(maximumAngle);
         // initialise the entities in our game so there's something
         // to see at startup
         initEntities();
@@ -324,11 +324,9 @@ public class Game extends Canvas {
                     if (entity instanceof ShotEntity) {
                         if (rightAngle >= 0) {
                             long angle = rightAngle * ANGLE_CONSTANT;
-                            System.out.println("Right angle is : " + angle);
                             entity.move(delta, angle);
                         } else if (leftAngle >= 0) {
                             long angle = -leftAngle * ANGLE_CONSTANT;
-                            System.out.println("Left angle is : " + angle);
                             entity.move(delta, angle);
                         } else {
                             entity.move(delta);
@@ -336,6 +334,8 @@ public class Game extends Canvas {
                     } else
                         entity.move(delta);
                 }
+
+
             }
 
             // cycle round drawing all the entities we have in the game
@@ -458,13 +458,13 @@ public class Game extends Canvas {
             }
 
             if (e.getKeyCode() == KeyEvent.VK_X) {
-                if (rightAngle * ANGLE_CONSTANT < maximumAngle) {
+                if ((rightAngle + 1) * ANGLE_CONSTANT < maximumAngle) {
                     rightAngle += 1;
                 }
                 leftAngle -= 1;
             }
             if (e.getKeyCode() == KeyEvent.VK_Z) {
-                if (-leftAngle * ANGLE_CONSTANT > -maximumAngle) {
+                if ((-leftAngle - 1) * ANGLE_CONSTANT > -maximumAngle) {
                     leftAngle += 1;
                 }
                 rightAngle -= 1;
