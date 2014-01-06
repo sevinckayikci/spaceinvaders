@@ -46,6 +46,67 @@ public class ShipEntity extends Entity {
         super.move(delta);
     }
 
+    public void rotate(int angle) {
+        String spriteRef;
+        switch (angle) {
+            case 0:
+                spriteRef = "sprites/ships/ship.gif";
+                break;
+            case 10:
+                spriteRef = "sprites/ships/ship10.gif";
+                break;
+            case 20:
+                spriteRef = "sprites/ships/ship20.gif";
+                break;
+            case 30:
+                spriteRef = "sprites/ships/ship30.gif";
+                break;
+            case 40:
+                spriteRef = "sprites/ships/ship40.gif";
+                break;
+            case 50:
+                spriteRef = "sprites/ships/ship50.gif";
+                break;
+            case 60:
+                spriteRef = "sprites/ships/ship60.gif";
+                break;
+            case 70:
+                spriteRef = "sprites/ships/ship70.gif";
+                break;
+            case 80:
+                spriteRef = "sprites/ships/ship80.gif";
+                break;
+            case -10:
+                spriteRef = "sprites/ships/ship-10.gif";
+                break;
+            case -20:
+                spriteRef = "sprites/ships/ship-20.gif";
+                break;
+            case -30:
+                spriteRef = "sprites/ships/ship-30.gif";
+                break;
+            case -40:
+                spriteRef = "sprites/ships/ship-40.gif";
+                break;
+            case -50:
+                spriteRef = "sprites/ships/ship-50.gif";
+                break;
+            case -60:
+                spriteRef = "sprites/ships/ship-60.gif";
+                break;
+            case -70:
+                spriteRef = "sprites/ships/ship-70.gif";
+                break;
+            case -80:
+                spriteRef = "sprites/ships/ship-80.gif";
+                break;
+            default:
+                spriteRef = "sprites/ships/ship.gif";
+                break;
+        }
+        this.sprite = SpriteStore.get().getSprite(spriteRef);
+    }
+
     /**
      * Notification that the player's ship has collided with something
      *

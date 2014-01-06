@@ -105,7 +105,7 @@ public class Game extends Canvas {
 
     private long rightAngle = 0;
     private long leftAngle = 0;
-    private final long ANGLE_CONSTANT = 100;
+    private final long ANGLE_CONSTANT = 212;
     private final double maximumAngle = 300 / Math.tan(Math.toRadians(10));
 
     /**
@@ -462,6 +462,11 @@ public class Game extends Canvas {
                     rightAngle += 1;
                 }
                 leftAngle -= 1;
+
+                if (rightAngle > 0)
+                    ((ShipEntity) ship).rotate((int) rightAngle * 10);
+                else
+                    ((ShipEntity) ship).rotate(-(int) leftAngle * 10);
             }
             if (e.getKeyCode() == KeyEvent.VK_Z) {
                 if ((-leftAngle - 1) * ANGLE_CONSTANT > -maximumAngle) {
@@ -469,6 +474,10 @@ public class Game extends Canvas {
                 }
                 rightAngle -= 1;
 
+                if (rightAngle > 0)
+                    ((ShipEntity) ship).rotate((int) rightAngle * 10);
+                else
+                    ((ShipEntity) ship).rotate(-(int) leftAngle * 10);
             }
 
         }
